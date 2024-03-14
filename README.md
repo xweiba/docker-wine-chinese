@@ -16,6 +16,8 @@ xiaoweiba1028/docker-wine-chinese:1.0.0 /bin/bash
 
 使用RDP客户端连接即可，用户名/密码：`wineuser/wineuser`
 
+详细的文档可移步至：[https://github.com/scottyhardy/docker-wine](https://github.com/scottyhardy/docker-wine)
+
 # 构建
 ```bash
 git git@github.com:xweiba/docker-wine-chinese.git && cd docker-wine-chinese
@@ -42,4 +44,4 @@ docker push xiaoweiba1028/docker-wine-chinese:1.0.0
 ```
 ## 特别感谢
 感谢下列项目,记得给大佬们点🌟  
-https://github.com/scottyhardy/docker-wine
+[https://github.com/scottyhardy/docker-wine](https://github.com/scottyhardy/docker-wine)
