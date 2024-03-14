@@ -22,7 +22,7 @@ if [ ! -d "$wine_prefix" ]; then
 
   # 'winetricks msftedit' 解决输入框问题，文件较大，不复制进镜像了，需要的手动装
   # sudo -u wineuser WINEARCH=win64 WINEPREFIX=/home/wineuser/.wine LC_ALL="zh_CN.UTF8" winetricks msftedit
-  for command in winecfg 'winetricks cjkfonts' 'winetricks vcrun2022' 'winetricks riched20' 'winetricks riched30' 'winetricks richtx32' ; do
+  for command in winecfg 'winetricks cjkfonts' 'winetricks vcrun2022' 'winetricks riched20' 'winetricks riched30' 'winetricks richtx32' 'winetricks msftedit'; do
     su $username -c "$env_strings $command"
   done
 fi
