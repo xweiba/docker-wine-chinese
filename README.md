@@ -11,7 +11,7 @@ docker run -it \
 --env="RDP_SERVER=yes" \
 --publish="3389:3389/tcp" \
 -v /mnt:/mnt \
-xiaoweiba1028/docker-wine-chinese:1.0.0 /bin/bash
+xiaoweiba1028/docker-wine-chinese:1.0.1 /bin/bash
 ```
 
 使用RDP客户端连接即可，用户名/密码：`wineuser/wineuser`
@@ -27,11 +27,7 @@ mkdir -p files/winetricks/sourcehansans && mkdir -p files/winetricks/win2ksp4
 wget -O ./files/winetricks/sourcehansans/SourceHanSans.ttc.zip https://github.com/adobe-fonts/source-han-sans/releases/download/2.004R/SourceHanSans.ttc.zip
 wget -O ./files/winetricks/win2ksp4/W2KSP4_EN.EXE http://x3270.bgp.nu/download/specials/W2KSP4_EN.EXE
 
-# 输入框异常修复， 文件1.4GB 左右，太大了，有需要的自己装，sudo -u wineuser WINEARCH=win64 WINEPREFIX=/home/wineuser/.wine winetricks msftedit
-# wget -O ./files/winetricks/win7sp1/windows6.1-KB976932-X64.exe http://download.windowsupdate.com/msdownload/update/software/svpk/2011/02/windows6.1-kb976932-x64_74865ef2562006e51d7f9333b4a8d45b7a749dab.exe
-# wget -O ./files/winetricks/win7sp1/windows6.1-KB976932-X86.exe http://download.windowsupdate.com/msdownload/update/software/svpk/2011/02/windows6.1-kb976932-x86_c3516bc5c9e69fee6d9ac4f981f5b95977a8a2fa.exe
-
-docker build --no-cache -t docker-wine-chinese:1.0.0 .
+docker build --no-cache -t docker-wine-chinese:1.0.1 .
 ```
 
 # 测试
@@ -43,25 +39,32 @@ docker run -it \
 --env="RDP_SERVER=yes" \
 --publish="3389:3389/tcp" \
 -v /mnt:/mnt \
-docker-wine-chinese:1.0.0 /bin/bash
+docker-wine-chinese:1.0.1 /bin/bash
 ```
 
 # 推送至仓库
 ```bash
 docker login
-docker tag docker-wine-chinese:1.0.0 xiaoweiba1028/docker-wine-chinese:1.0.0
-docker push xiaoweiba1028/docker-wine-chinese:1.0.0
+docker tag docker-wine-chinese:1.0.1 xiaoweiba1028/docker-wine-chinese:1.0.1
+docker push xiaoweiba1028/docker-wine-chinese:1.0.1
 ```
 
 # 问题Fix
 
+## 微信输入框异常，无法粘贴图片，输入框有一块白色的区域，不输入可以不安装
 ```bash
-# 微信图片有问题可以试试
-sudo apt-get install libjpeg62:i386
+# 修复微信等输入框异常修复，不输入可以不安装，共1.4GB 左右，未进镜像，需要的自己进bash装
 
-# 输入框异常修复，不输入可以不安装，共1.4GB 左右，未进镜像，需要的自己进bash装
+# 1. 有备份缓存的字节用缓存安装
+cp -r /mnt/my_data/docker-wine-chinese/win7sp1/ /home/wineuser/.cache/winetricks/
+# 2. 安装包，没有缓存文件会直接在线下载。
 sudo -u wineuser WINEARCH=win64 WINEPREFIX=/home/wineuser/.wine winetricks msftedit
+```
 
+## 微信图片显示异常
+```
+# 微信图片有问题可以试试， 我测试正常没有安装这个
+sudo apt-get install libjpeg62:i386
 ```
 
 ## 特别感谢
