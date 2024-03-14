@@ -21,6 +21,10 @@ xiaoweiba1028/docker-wine-chinese:1.0.0 /bin/bash
 # 构建
 ```bash
 git git@github.com:xweiba/docker-wine-chinese.git && cd docker-wine-chinese
+
+# 该文件超过50MB, 无法推送到github，自己下吧
+wget -O ./files/winetricks/sourcehansans/SourceHanSans.ttc.zip https://github.com/adobe-fonts/source-han-sans/releases/download/2.004R/SourceHanSans.ttc.zip
+
 docker build --no-cache -t docker-wine-chinese:1.0.0 .
 ```
 
