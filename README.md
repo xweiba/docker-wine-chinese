@@ -54,10 +54,10 @@ docker push xiaoweiba1028/docker-wine-chinese:1.0.1
 ## 微信输入框异常，无法粘贴图片，输入框有一块白色的区域，不输入可以不安装
 ```bash
 # 修复微信等输入框异常修复，不输入可以不安装，共1.4GB 左右，未进镜像，需要的自己进bash装
-
-# 1. 有备份缓存的字节用缓存安装
+docker exec -it docker-wine-chinese bash
+# 1. 有备份缓存的字节用msftedit依赖缓存文件
 cp -r /mnt/my_data/docker-wine-chinese/win7sp1/ /home/wineuser/.cache/winetricks/
-# 2. 安装包，没有缓存文件会直接在线下载。
+# 2. 安装依赖，没有缓存会直接在线下载。
 sudo -u wineuser WINEARCH=win64 WINEPREFIX=/home/wineuser/.wine winetricks msftedit
 ```
 
