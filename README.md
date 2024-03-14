@@ -67,6 +67,12 @@ sudo -u wineuser WINEARCH=win64 WINEPREFIX=/home/wineuser/.wine winetricks msfte
 sudo apt-get install libjpeg62:i386
 ```
 
+## d3d:wined3d_caps_gl_ctx_create Failed to create a window.
+```bash
+# Umi-OCR fix
+sudo apt-get install -y libgl1-mesa-glx:i386
+```
+
 ## 特别感谢
 感谢下列项目,记得给大佬们点🌟  
 [https://github.com/scottyhardy/docker-wine](https://github.com/scottyhardy/docker-wine)
